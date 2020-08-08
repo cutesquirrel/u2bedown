@@ -1,0 +1,28 @@
+extend layout
+
+block content
+  if result
+    .row
+      .alert-message(class="alert alert-success alert-dismissible fade show" role="alert")= result
+  .row
+    .col-md-8
+      form(action="/down" method="post")
+        #contact-form.form-container(data-form-container='', style='color: rgb(46, 125, 50); background: rgb(200, 230, 201);')
+          .row
+            .form-title
+              span  Download Youtube video
+          .input-container
+            .row
+              span.req-input.valid
+                span.input-status(data-toggle='tooltip', data-placement='top', title='Paste a youtube video URL...')
+                input(name='todown', id='todown', type='text', data-validate='youtube', placeholder='Youtube video URL (ex: https://www.youtube.com/watch?v=n-yr7VxqlbA)', value= todown)
+            .row.submit-row
+              button.btn.btn-block.submit-form.valid(type='submit') Submit
+
+    if (result == 'ok')
+      .col-md-4
+        ul
+          li
+            a.btn.btn-success(href='/down/audio') Get MP3
+          li
+            a.btn.btn-primary(href='/down/video') Get VIDEO
